@@ -62,7 +62,8 @@ export default defineConfig({
           {
             text: '📖 使用手册',
             items: [
-              { text: '快速开始', link: '/Started/Install' },
+              { text: '写在前面', link: '/Started/BeforeStart' },
+              { text: '快速开始', link: '/Started/BeforeStart' },
               { text: '关于MaaYuan', link: '/Manual/Overview' },
               { text: '功能介绍', link: '/Features/HomeInterface' },
               { text: '任务介绍', link: '/Activity/Current' },
@@ -127,6 +128,7 @@ export default defineConfig({
             {
               text: "🚀 快速开始",
               items: [
+                { text: "写在前面", link: "/Started/BeforeStart" },
                 { text: "下载与安装", link: "/Started/Install" },
                 { text: "首次启动", link: "/Started/FirstLaunch" },
                 { text: "连接与更新", link: "/Started/ConnectionAndUpdate" },
@@ -178,12 +180,12 @@ export default defineConfig({
           next: "下一篇",
         },
         editLink: {
-          pattern: "https://github.com/MrSnake0208/MaaYuan-docs/edit/main/:path",
+          pattern: "https://github.com/Syoius/MaaYuan-docs/edit/main/:path",
           text: "在 GitHub 上编辑此页",
         },
         siteTitle: "MaaYuan",
         logo: "/icon.png",
-        socialLinks: [{ icon: "github", link: "https://github.com/MrSnake0208/MaaYuan-docs" }],
+        socialLinks: [{ icon: "github", link: "https://github.com/Syoius/MaaYuan-docs" }],
         footer: {
           message: footerMessage,
           copyright: footerCopyright,

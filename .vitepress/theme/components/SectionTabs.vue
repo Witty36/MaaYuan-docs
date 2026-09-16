@@ -6,7 +6,7 @@ const route = useRoute()
 const { frontmatter } = useData()
 
 const tabs = [
-  { text: '快速开始', link: '/Started/Install', matchers: ['/Started/'] },
+  { text: '快速开始', link: '/Started/BeforeStart', matchers: ['/Started/'] },
   { text: '关于MaaYuan', link: '/Manual/Overview', matchers: ['/Manual/'] },
   { text: '功能介绍', link: '/Features/HomeInterface', matchers: ['/Features/'] },
   { text: '任务介绍', link: '/Activity/Current', matchers: ['/Activity/'] },
