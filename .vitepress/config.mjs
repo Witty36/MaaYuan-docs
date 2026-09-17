@@ -1,4 +1,5 @@
 import { createMarkdownRenderer, defineConfig } from "vitepress";
+import { defineTeekConfig } from "vitepress-theme-teek/config";
 import { createAnnouncementNavMenuItems } from "./shared/announcementNav.mjs";
 import { navPopoverData } from "./shared/navPopover.mjs";
 import { head } from "./config/head";
@@ -29,6 +30,32 @@ const footerCopyright = [
 ].filter(Boolean).join("<br>");
 
 export default defineConfig({
+  extends: defineTeekConfig({
+    teekHome: false,
+    vpHome: true,
+    // 保留手工导航和 zh/ 路由重写，不生成博客元数据或永久链接。
+    vitePlugins: {
+      sidebar: false,
+      permalink: false,
+      mdH1: false,
+      docAnalysis: false,
+      autoFrontmatter: false,
+      fileContentLoaderIgnore: ["**"],
+    },
+    breadcrumb: { enabled: false },
+    articleAnalyze: { showInfo: false, imageViewer: { enabled: false } },
+    articleUpdate: { enabled: false },
+    articleShare: { enabled: false },
+    toComment: { enabled: false },
+    footerInfo: { theme: { show: false }, copyright: { show: false } },
+    anchorScroll: false,
+    themeEnhance: {
+      enabled: true,
+      layoutSwitch: { defaultMode: "original" },
+      themeColor: { defaultColorName: "vp-primary", defaultSpread: false },
+      spotlight: { defaultValue: false, defaultStyle: "aside" },
+    },
+  }),
   title: "MaaYuan 文档站",
   description: "MaaYuan 是代号鸢/如鸢玩家的实用助手，日常、活动、高难关卡直接拿捏，解放双手，畅玩无忧！立即了解如何使用或参与开发 MaaYuan，并查看更多代号鸢/如鸢攻略与实用工具。",
   head,
@@ -40,7 +67,7 @@ export default defineConfig({
     "zh/:rest*": ":rest*",
   },
 
-  srcExclude: ["README.md", "operations-log.md", "scripts/**", "tests/**"],
+  srcExclude: ["README.md", "AGENTS.md", "operations-log.md", "scripts/**", "tests/**"],
 
   lastUpdated: true,
   ignoreDeadLinks: true,

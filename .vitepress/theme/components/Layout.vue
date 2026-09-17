@@ -1,112 +1,31 @@
 <script setup>
-import { computed, provide, useSlots } from 'vue'
-import { useRoute } from 'vitepress'
-import VPBackdrop from 'vitepress/dist/client/theme-default/components/VPBackdrop.vue'
-import VPContent from 'vitepress/dist/client/theme-default/components/VPContent.vue'
-import VPFooter from 'vitepress/dist/client/theme-default/components/VPFooter.vue'
-import VPLocalNav from 'vitepress/dist/client/theme-default/components/VPLocalNav.vue'
-import VPNav from 'vitepress/dist/client/theme-default/components/VPNav.vue'
-import VPSidebar from 'vitepress/dist/client/theme-default/components/VPSidebar.vue'
-import VPSkipLink from 'vitepress/dist/client/theme-default/components/VPSkipLink.vue'
-import { useData } from 'vitepress/dist/client/theme-default/composables/data'
-import { layoutInfoInjectionKey, registerWatchers } from 'vitepress/dist/client/theme-default/composables/layout'
-import { useSidebarControl } from 'vitepress/dist/client/theme-default/composables/sidebar'
-import SectionTabs from './SectionTabs.vue'
+import { computed, onMounted, provide, ref } from 'vue'
+import { useData } from 'vitepress'
+import Teek, { teekConfigContext } from 'vitepress-theme-teek'
+import { migrateThemePreferences } from '../../shared/themePreferences.mjs'
 
-const {
-  isOpen: isSidebarOpen,
-  open: openSidebar,
-  close: closeSidebar
-} = useSidebarControl()
-
-registerWatchers({ closeSidebar })
-
-const { frontmatter } = useData()
-
-const slots = useSlots()
-const heroImageSlotExists = computed(() => !!slots['home-hero-image'])
-
-provide(layoutInfoInjectionKey, { heroImageSlotExists })
-
-const route = useRoute()
-const sidebarScopeClass = computed(() => {
-  const path = route.path
-  if (path.startsWith('/Started/')) return 'sidebar-scope-started'
-  if (path.startsWith('/Manual/')) return 'sidebar-scope-manual'
-  if (path.startsWith('/Features/')) return 'sidebar-scope-features'
-  if (path.startsWith('/Activity/')) return 'sidebar-scope-activity'
-  if (path.startsWith('/FAQ/')) return 'sidebar-scope-faq'
-  if (path === '/Developer' || path === '/Developer/') return 'sidebar-scope-developer'
-  return ''
+const { theme } = useData()
+const mounted = ref(false)
+onMounted(() => {
+  try {
+    migrateThemePreferences(localStorage)
+  } catch {
+    // 浏览器禁用存储时不阻止正文挂载。
+  }
+  mounted.value = true
 })
+
+// Teek 的浮层依赖浏览器创建的 Teleport 容器；正文仍正常参与静态渲染。
+provide(teekConfigContext, computed(() => ({
+  themeEnhance: { ...theme.value.themeEnhance, enabled: mounted.value },
+  backTop: { enabled: mounted.value },
+})))
 </script>
 
 <template>
-  <div
-    v-if="frontmatter.layout !== false"
-    class="Layout"
-    :class="[frontmatter.pageClass, sidebarScopeClass]"
-  >
-    <slot name="layout-top" />
-    <VPSkipLink />
-    <VPBackdrop class="backdrop" :show="isSidebarOpen" @click="closeSidebar" />
-    <VPNav>
-      <template #nav-bar-title-before><slot name="nav-bar-title-before" /></template>
-      <template #nav-bar-title-after><slot name="nav-bar-title-after" /></template>
-      <template #nav-bar-content-before><slot name="nav-bar-content-before" /></template>
-      <template #nav-bar-content-after><slot name="nav-bar-content-after" /></template>
-      <template #nav-screen-content-before><slot name="nav-screen-content-before" /></template>
-      <template #nav-screen-content-after><slot name="nav-screen-content-after" /></template>
-    </VPNav>
-
-    <SectionTabs />
-
-    <VPLocalNav :open="isSidebarOpen" @open-menu="openSidebar" />
-
-    <VPSidebar :open="isSidebarOpen">
-      <template #sidebar-nav-before><slot name="sidebar-nav-before" /></template>
-      <template #sidebar-nav-after><slot name="sidebar-nav-after" /></template>
-    </VPSidebar>
-
-    <VPContent>
-      <template #page-top><slot name="page-top" /></template>
-      <template #page-bottom><slot name="page-bottom" /></template>
-
-      <template #not-found><slot name="not-found" /></template>
-      <template #home-hero-before><slot name="home-hero-before" /></template>
-      <template #home-hero-info-before><slot name="home-hero-info-before" /></template>
-      <template #home-hero-info><slot name="home-hero-info" /></template>
-      <template #home-hero-info-after><slot name="home-hero-info-after" /></template>
-      <template #home-hero-actions-after><slot name="home-hero-actions-after" /></template>
-      <template #home-hero-image><slot name="home-hero-image" /></template>
-      <template #home-hero-after><slot name="home-hero-after" /></template>
-      <template #home-features-before><slot name="home-features-before" /></template>
-      <template #home-features-after><slot name="home-features-after" /></template>
-
-      <template #doc-footer-before><slot name="doc-footer-before" /></template>
-      <template #doc-before><slot name="doc-before" /></template>
-      <template #doc-after><slot name="doc-after" /></template>
-      <template #doc-top><slot name="doc-top" /></template>
-      <template #doc-bottom><slot name="doc-bottom" /></template>
-
-      <template #aside-top><slot name="aside-top" /></template>
-      <template #aside-bottom><slot name="aside-bottom" /></template>
-      <template #aside-outline-before><slot name="aside-outline-before" /></template>
-      <template #aside-outline-after><slot name="aside-outline-after" /></template>
-      <template #aside-ads-before><slot name="aside-ads-before" /></template>
-      <template #aside-ads-after><slot name="aside-ads-after" /></template>
-    </VPContent>
-
-    <VPFooter />
-    <slot name="layout-bottom" />
-  </div>
-  <Content v-else />
+  <Teek.Layout>
+    <template v-for="(_, name) in $slots" #[name]="scope">
+      <slot :name="name" v-bind="scope || {}" />
+    </template>
+  </Teek.Layout>
 </template>
-
-<style scoped>
-.Layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-</style>

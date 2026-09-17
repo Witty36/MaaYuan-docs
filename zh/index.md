@@ -1,5 +1,6 @@
 ---
 layout: home
+markdownStyles: false
 
 title: MaaYuan 开发与使用手册
 titleTemplate: 代号鸢/如鸢小助手

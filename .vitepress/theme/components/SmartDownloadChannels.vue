@@ -228,7 +228,7 @@ function getStickyOffset() {
   if (typeof document === 'undefined')
     return 0
 
-  return ['.VPNav', '.VPSectionTabs', '.VPLocalNav']
+  return ['.VPNav', '.VPLocalNav']
     .map((selector) => document.querySelector<HTMLElement>(selector)?.getBoundingClientRect().height ?? 0)
     .reduce((sum, height) => sum + height, 0)
 }
