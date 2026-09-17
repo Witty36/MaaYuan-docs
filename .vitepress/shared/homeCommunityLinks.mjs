@@ -1,4 +1,4 @@
-import communityLinksData from "./data/communityLinks.json";
+import communityLinksData from "./data/communityLinks.json" with { type: "json" };
 
 export const homeCommunityLinksTitle = communityLinksData.title;
 export const homeCommunityLinksDescription = communityLinksData.description;

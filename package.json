@@ -7,9 +7,15 @@
     "test": "node --test tests/*.test.mjs"
   },
   "devDependencies": {
-    "vitepress": "^2.0.0-alpha.17"
+    "vitepress": "2.0.0-alpha.20"
   },
   "dependencies": {
+    "vitepress-theme-teek": "1.6.2",
     "vue": "^3.5.17"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "vitepress-theme-teek@1.6.2": "patches/vitepress-theme-teek@1.6.2.patch"
+    }
   }
 }

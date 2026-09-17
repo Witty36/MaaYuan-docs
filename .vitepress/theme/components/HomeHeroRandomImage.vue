@@ -18,7 +18,7 @@ function getRandomIndex(excludedIndex = -1) {
   return nextIndex
 }
 
-const currentIndex = ref(getRandomIndex())
+const currentIndex = ref(imagePaths.length ? 0 : -1)
 const currentSrc = computed(() => currentIndex.value >= 0 ? imagePaths[currentIndex.value] : '')
 const loaded = ref(false)
 const imageRef = ref<HTMLImageElement | null>(null)
@@ -51,6 +51,7 @@ function onLoad() {
 }
 
 onMounted(() => {
+  currentIndex.value = getRandomIndex()
   syncLoadedState()
 })
 
