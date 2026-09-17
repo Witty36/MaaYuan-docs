@@ -15,6 +15,7 @@
 | 安装包名 | `MaaYuan-win-x86_64-vXXX.zip` | `MaaYuan-macos-aarch64-vXXX.tar.gz` |
 
 ::: warning
+
 - `MaaYuan`当前仅支持 `Windows x64` 与 `macOS Apple Silicon（aarch64）`。
 - Windows 端只提供 `x86_64` 安装包，不支持 Windows ARM。
 - macOS 目前仅支持 Apple Silicon（`aarch64`）安装包；Intel Mac 暂不支持。
@@ -66,8 +67,8 @@
 :::
 
 ::: details 版本变化提醒
-如需使用 `正式版V1.0.2 `（发布于2025年12月1日）及之前的版本，请安装 `.NET 8 `版本运行库。
-如需使用 `公测版v2.0.0 `（发布于2026年1月1日）及最新的版本，请安装 `.NET 10 `及以上版本运行库。
+如需使用 `正式版V1.0.2`（发布于2025年12月1日）及之前的版本，请安装 `.NET 8`版本运行库。
+如需使用 `公测版v2.0.0`（发布于2026年1月1日）及最新的版本，请安装 `.NET 10`及以上版本运行库。
 :::
 
 ## 下一步
