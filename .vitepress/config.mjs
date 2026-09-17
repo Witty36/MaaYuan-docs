@@ -89,7 +89,6 @@ export default defineConfig({
           {
             text: '📖 使用手册',
             items: [
-              { text: '写在前面', link: '/Started/BeforeStart' },
               { text: '快速开始', link: '/Started/BeforeStart' },
               { text: '关于MaaYuan', link: '/Manual/Overview' },
               { text: '功能介绍', link: '/Features/HomeInterface' },
@@ -137,23 +136,9 @@ export default defineConfig({
               ],
             },
           ],
-          "/FAQ/": [
-            {
-              text: "💫 常见问题",
-              items: [
-                // { text: "FAQ 总览", link: "/FAQ/" },
-                { text: "问题排查", link: "/FAQ/01-general-issues" },
-                { text: "下载安装", link: "/FAQ/02-installation-issues" },
-                // { text: "启动问题", link: "/FAQ/03-startup-issues" },
-                { text: "连接错误", link: "/FAQ/04-connection-issues" },
-                { text: "任务运行", link: "/FAQ/05-runtime-issues" },
-                // { text: "作业问题", link: "/FAQ/06-homework-issues" },
-              ],
-            },
-          ],
           "/": [
             {
-              text: "🚀 快速开始",
+              text: "快速开始",
               items: [
                 { text: "写在前面", link: "/Started/BeforeStart" },
                 { text: "下载与安装", link: "/Started/Install" },
@@ -162,7 +147,7 @@ export default defineConfig({
               ],
             },
             {
-              text: "📘 关于MaaYuan",
+              text: "关于MaaYuan",
               items: [
                 { text: "项目概览", link: "/Manual/Overview" },
                 { text: "反馈方式", link: "/Manual/Feedback" },
@@ -171,7 +156,7 @@ export default defineConfig({
               ],
             },
             {
-              text: "⚙️ 功能介绍",
+              text: "功能介绍",
               items: [
                 { text: "主页界面", link: "/Features/HomeInterface" },
                 // { text: "日常任务说明", link: "/Features/DailyTasks" },
@@ -185,11 +170,20 @@ export default defineConfig({
               ],
             },
             {
-              text: "🎉 活动指南",
+              text: "任务介绍",
               items: [
                 { text: "当前活动", link: "/Activity/Current" },
                 { text: "常驻任务", link: "/Activity/Permanent" },
                 { text: "往期任务", link: "/Activity/EventArchive"},
+              ],
+            },
+            {
+              text: "常见问题",
+              items: [
+                { text: "问题排查", link: "/FAQ/01-general-issues" },
+                { text: "下载安装", link: "/FAQ/02-installation-issues" },
+                { text: "连接错误", link: "/FAQ/04-connection-issues" },
+                { text: "任务运行", link: "/FAQ/05-runtime-issues" },
               ],
             },
           ],
