@@ -52,7 +52,32 @@ export default defineConfig({
     themeEnhance: {
       enabled: true,
       layoutSwitch: { defaultMode: "original" },
-      themeColor: { defaultColorName: "vp-primary", defaultSpread: false },
+      themeColor: {
+        defaultColorName: "vp-primary",
+        defaultSpread: false,
+        append: [
+          {
+            label: "扩展主题色板",
+            tip: "MaaYuan 扩展主题色板",
+            options: [
+              { label: "紫色", value: "maayuan-purple", color: "#8b5cf6" },
+              { label: "紫罗兰", value: "maayuan-violet", color: "#7166f0" },
+              { label: "粉红", value: "maayuan-pink", color: "#f15bb5" },
+              { label: "黄绿", value: "maayuan-yellow-green", color: "#8ac926" },
+              { label: "薰衣草", value: "maayuan-lavender", color: "#967bb6" },
+              { label: "橙红", value: "maayuan-orange-red", color: "#ff9e6b" },
+              { label: "石板灰", value: "maayuan-slate-gray", color: "#708090" },
+              { label: "深海蓝", value: "maayuan-ocean-blue", color: "#0077be" },
+              { label: "橄榄绿", value: "maayuan-olive-green", color: "#808000" },
+              { label: "琥珀色", value: "maayuan-amber", color: "#ffbf00" },
+              { label: "日落橙", value: "maayuan-sunset-orange", color: "#ff7f50" },
+              { label: "雾霾蓝", value: "maayuan-haze-blue", color: "#6699cc" },
+              { label: "豆沙红", value: "maayuan-bean-paste-red", color: "#d27d7d" },
+              { label: "玫瑰金", value: "maayuan-rose-gold", color: "#b76e79" },
+            ],
+          },
+        ],
+      },
       spotlight: { defaultValue: false, defaultStyle: "aside" },
     },
   }),
