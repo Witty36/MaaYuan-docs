@@ -18,7 +18,7 @@
 - 作业站前端
 - ⚔️[司命-Maa鸢的作业生成器](https://github.com/syoius/MaaYuan-SiMing)
 - [原导航站](https://github.com/syoius/MaaYuan)
-- 🆕[导航站前端](https://github.com/MrSnake0208/MaaYuan-docs)
+- 🆕[文档站前端](https://github.com/syoius/MaaYuan-docs)
 - 🤖Maa鸢助理
 
 ## 参与开发
